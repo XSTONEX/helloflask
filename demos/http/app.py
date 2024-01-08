@@ -75,37 +75,37 @@ def note(content_type):
     content_type = content_type.lower()
     if content_type == 'text':
         body = '''Note
-to: Peter
-from: Jane
-heading: Reminder
-body: Don't forget the party!
-'''
+                to: Peter
+                from: Jane
+                heading: Reminder
+                body: Don't forget the party!
+                '''
         response = make_response(body)
         response.mimetype = 'text/plain'
     elif content_type == 'html':
         body = '''<!DOCTYPE html>
-<html>
-<head></head>
-<body>
-  <h1>Note</h1>
-  <p>to: Peter</p>
-  <p>from: Jane</p>
-  <p>heading: Reminder</p>
-  <p>body: <strong>Don't forget the party!</strong></p>
-</body>
-</html>
-'''
+                <html>
+                <head></head>
+                <body>
+                <h1>Note</h1>
+                <p>to: Peter</p>
+                <p>from: Jane</p>
+                <p>heading: Reminder</p>
+                <p>body: <strong>Don't forget the party!</strong></p>
+                </body>
+                </html>
+                '''
         response = make_response(body)
         response.mimetype = 'text/html'
     elif content_type == 'xml':
         body = '''<?xml version="1.0" encoding="UTF-8"?>
-<note>
-  <to>Peter</to>
-  <from>Jane</from>
-  <heading>Reminder</heading>
-  <body>Don't forget the party!</body>
-</note>
-'''
+                <note>
+                <to>Peter</to>
+                <from>Jane</from>
+                <heading>Reminder</heading>
+                <body>Don't forget the party!</body>
+                </note>
+                '''
         response = make_response(body)
         response.mimetype = 'application/xml'
     elif content_type == 'json':
@@ -161,23 +161,23 @@ def logout():
 def show_post():
     post_body = generate_lorem_ipsum(n=2)
     return '''
-<h1>A very long post</h1>
-<div class="body">%s</div>
-<button id="load">Load More</button>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-$(function() {
-    $('#load').click(function() {
-        $.ajax({
-            url: '/more',
-            type: 'get',
-            success: function(data){
-                $('.body').append(data);
-            }
-        })
-    })
-})
-</script>''' % post_body
+            <h1>A very long post</h1>
+            <div class="body">%s</div>
+            <button id="load">Load More</button>
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <script type="text/javascript">
+            $(function() {
+                $('#load').click(function() {
+                    $.ajax({
+                        url: '/more',
+                        type: 'get',
+                        success: function(data){
+                            $('.body').append(data);
+                        }
+                    })
+                })
+            })
+            </script>''' % post_body
 
 
 @app.route('/more')

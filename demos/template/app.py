@@ -37,16 +37,28 @@ def watchlist():
     return render_template('watchlist.html', user=user, movies=movies)
 
 
+# return index.html
 @app.route('/')
 def index():
     return render_template('index.html')
 
 
 # register template context handler
+# method 1:
 @app.context_processor
 def inject_info():
     foo = 'I am foo.'
     return dict(foo=foo)  # equal to: return {'foo': foo}
+    # 我们可以在模板中直接使用foo变量 
+    
+# method 2:
+def inject_info():
+    foo = 'I am foo.'
+    return dict(foo=foo)
+app.context_processor(inject_info)
+
+# method 3:
+app.context_processor(lambda: dict(foo='I am foo.'))
 
 
 # register template global function
